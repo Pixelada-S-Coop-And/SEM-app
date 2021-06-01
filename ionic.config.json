@@ -1,0 +1,7 @@
+{
+  "name": "SEM",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
