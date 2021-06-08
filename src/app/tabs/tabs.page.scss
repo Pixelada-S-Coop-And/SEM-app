@@ -18,7 +18,8 @@
  */
 
  .tabs {
-    --background: var(--ion-color-primary);   
+    --background: var(--ion-color-primary); 
+    font-family: Verdana;  
  }
 
  .tab {
@@ -30,3 +31,13 @@
  .tab-selected {
     --background: var(--ion-color-primary-contrast);
  }
+
+ .autonomia_sur {
+   position: absolute;
+   bottom: 60px;
+   right: 10px;
+   z-index: 999;
+   height: 95px;
+   width: 95px;
+   padding: 0;
+}
