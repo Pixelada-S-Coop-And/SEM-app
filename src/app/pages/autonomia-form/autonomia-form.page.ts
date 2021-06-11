@@ -17,27 +17,34 @@
  *  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
-import { Tab1Page } from './tab1.page';
+@Component({
+  selector: 'app-autonomia-form',
+  templateUrl: './autonomia-form.page.html',
+  styleUrls: ['./autonomia-form.page.scss'],
+})
+export class AutonomiaFormPage implements OnInit {
+  message: string;
+  title: string;
+  constructor(private modalCtrl: ModalController) { }
 
-describe('Tab1Page', () => {
-  let component: Tab1Page;
-  let fixture: ComponentFixture<Tab1Page>;
+  ngOnInit() {
+  }
+  send() {
+    /*TODO: check if form is not blank */
+    this.modalCtrl.dismiss({
+      sent: true,
+      err: false
+    });
+  }
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [Tab1Page],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+  close() {
+    this.modalCtrl.dismiss({
+      sent: false,
+      err: false
+    });
+  }
 
-    fixture = TestBed.createComponent(Tab1Page);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+}

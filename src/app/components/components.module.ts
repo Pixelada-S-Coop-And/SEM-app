@@ -17,27 +17,24 @@
  *  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
+import { NotificationBoxComponent } from './notification-box/notification-box.component';
 
-import { Tab1Page } from './tab1.page';
 
-describe('Tab1Page', () => {
-  let component: Tab1Page;
-  let fixture: ComponentFixture<Tab1Page>;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [Tab1Page],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(Tab1Page);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+@NgModule({
+  declarations: [
+    NotificationBoxComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule
+  ],
+  exports: [
+    NotificationBoxComponent
+  ]
+})
+export class ComponentsModule { }

@@ -1,17 +1,41 @@
+<!--
+  Copyright 2021 Pixelada s. Coop. And. <info (at) pixelada (dot) org>
+  
+  This file is part of SEM
+  
+  SEM is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  SEM is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
+ -->
+
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Notificaciones
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div id="background-content"></div>
+    <!-- <div *ngIf="myNotifications"> -->
+        <!-- <ion-grid *ngIf="myNotifications.length > 0"> -->
+        <ion-grid>
+            <app-notification-box [myNotification] = "testNotification1"></app-notification-box>
+            <app-notification-box [myNotification] = "testNotification2"></app-notification-box>
+        </ion-grid>
+       <!-- <div *ngIf="myNotifications.length == 0 && notificationsLoaded" id="no-notification">No hay ninguna<br />notificación</div>
+       
+  </div>
+  <div *ngIf="!myNotifications && notificationsLoaded" id="no-notification">No hay ninguna<br />notificación</div>
+  -->
 </ion-content>

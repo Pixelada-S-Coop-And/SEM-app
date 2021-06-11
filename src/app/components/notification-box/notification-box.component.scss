@@ -17,27 +17,44 @@
  *  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+ .notification-title {
+    font-weight: bold;
+}
 
-import { Tab1Page } from './tab1.page';
+.notification-text {
+    font-size: 15px !important;
+    line-height: 22px;
+    letter-spacing: -0.36px;
+    color: var(--ion-color-primary);
+}
 
-describe('Tab1Page', () => {
-  let component: Tab1Page;
-  let fixture: ComponentFixture<Tab1Page>;
+.notification-text-disabled {
+    color: grey;
+    font-weight: lighter;
+}
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [Tab1Page],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+.notification-text-hided {
+    display: none;
+}
 
-    fixture = TestBed.createComponent(Tab1Page);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
+.delete-notification {
+    position: absolute;
+    right: 20px;
+    display: block;
+    width: 20px;
+    top: 15px;
+    color: var(--ion-color-primary);
+}
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+.delete-notification-disabled {
+    color: grey;
+    --ionicon-stroke-width: 7px;
+    top: 0;
+}
+
+app-notification {
+    padding: 16px 40px 17px 0;
+}
+ion-datetime {
+    --padding-start: 0;
+}

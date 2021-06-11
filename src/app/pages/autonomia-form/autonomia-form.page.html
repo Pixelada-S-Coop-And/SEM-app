@@ -17,19 +17,34 @@
   along with SEM.  If not, see <https://www.gnu.org/licenses/>.
  -->
  
- <ion-header [translucent]="true">
+ <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ayuda / Sobre la app
+      Manda tu consulta
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-label>Asunto:</ion-label>
+        <ion-input class="box" type="text" maxlength="30"></ion-input>
+      </ion-col>
+    </ion-row>
+      <ion-col>
+        <ion-label>Mensaje:</ion-label>
+        <ion-textarea class="box" rows="15" [(ngModel)]="message" name="message"></ion-textarea>
+      </ion-col>
+    <ion-row>
+      
+    </ion-row>
+  </ion-grid>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button slot="end" (click)="close()"> cancelar </ion-button>
+    <ion-button slot="end" (click)="send()"> enviar </ion-button>
+  </ion-toolbar>
+</ion-footer>
