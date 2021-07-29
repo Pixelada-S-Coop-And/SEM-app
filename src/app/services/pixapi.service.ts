@@ -25,23 +25,37 @@ declare var require: any;
 // const TOKEN_KEY = '1235465a1c0058719712b867b67fa1e9'; // 'auth-token';
 const SECRETS = require('../../../secrets.json');
 
+export interface IBasicAPIMsg {
+  status: string;
+  msg: string;
+}
+
 export interface IRegistration {
-  ID: number;
-  code: string;
+  affiliate_id: number;
+  creation_date: string;
+  session_id: string;
 }
 
 export interface IUser {
-  ID: number;
-  name: string;
-  nif: string;
-  next_quota: string;
-  member_since: string;
-  section: string[];
-  email: string;
-  phone: number;
+  active: number;
   address: string;
+  affilitation_date: string;
+  birthdate: string;
+  cp: string;
+  dni: string;
+  email: string;
+  id: number;
   job: string;
-  born: string;
+  location: string;
+  name: string;
+  phone: number;​​​
+  province: string; ​​​
+  province_id: number;
+  province_name: string;
+  renovation_date: string;
+  section_id: number;
+  section_name: string;
+  surnames: string;
 }
 
 export interface INotification {
@@ -72,26 +86,24 @@ export class PixapiService {
   //////////////////////////////////////////
   /* REGISTRY */
   //////////////////////////////////////////
-  /*! login function, it takes email, pass and token, and try to do
-      a login */
-  login(email, password) {
+  /*! login function, it takes a pass and token, and try to do
+      a login, returns a session id to remember */
+  login(password) {
     const myPromise = new Promise((resolve, reject) => {
-      const url = this.API_URL + 'user/login.php';
+      const url = this.API_URL + 'affiliate/login';
       const jsonData = JSON.stringify({
-        email,
         pass: password,
         token: this.TOKEN
       });
       console.log('DEBUG api login, sending:', jsonData);
       this.http.post(url, jsonData).subscribe(
-        data => {
+        (data) => {
           console.log('DEBUG api login, receiving:', data);
           this.myData = data;
-          console.log('DEBUG api login, transcription:', this.myData);
           if (this.myData.result === 'error') {
             reject(this.myData.msg);
           } else {
-            resolve(this.myData.data.session.session_id);
+            resolve(this.myData.data.session.session_id as string);
           }
         },
         error => {
@@ -101,38 +113,11 @@ export class PixapiService {
     });
     return myPromise;
   }
-  /*! recover lost password function, it takes email and token, and
-  asks for a new password */
-  recover(email) {
-    const myPromise = new Promise((resolve, reject) => {
-      const url = this.API_URL + 'user/resetpass.php';
-      const jsonData = JSON.stringify({
-        email,
-        token: this.TOKEN
-      });
-      console.log('DEBUG api recover, sending:', jsonData);
-      this.http.post(url, jsonData).subscribe(
-      data => {
-        console.log('DEBUG api recover, sending:', data);
-        this.myData = data;
-        if (this.myData.result === 'error') {
-          console.log(this.myData);
-          reject(this.myData.msg);
-        } else {
-          resolve(this.myData.result);
-        }
-      },
-      error => {
-        console.log('DEBUG api recover, ERROR receiving:', error);
-        reject(error.statusText);
-      });
-    });
-    return myPromise;
-  }
+
   /*!function for logging out api session */
   logout(sessionId) {
     const myPromise = new Promise((resolve, reject) => {
-      const url = this.API_URL + 'user/logout.php';
+      const url = this.API_URL + 'affiliate/logout';
       const jsonData = JSON.stringify({
               session_id: sessionId,
               token: this.TOKEN
@@ -155,39 +140,11 @@ export class PixapiService {
       });
     return myPromise;
    }
-  /*! registry function, it takes name, email, pass and token,
-  and try to do a registry */
-  register(name, email, password) {
-    const myPromise = new Promise((resolve, reject) => {
-      const url = this.API_URL + 'user/register.php';
-      const jsonData = JSON.stringify({
-        name,
-        email,
-        pass: password,
-        token: this.TOKEN
-      });
-      console.log('DEBUG api register, sending:', jsonData);
-      this.http.post(url, jsonData).subscribe(
-        data => {
-          this.myData = data;
-          console.log('DEBUG api register, receiving:', data);
-          if (this.myData.result === 'error') {
-            reject(this.myData.msg);
-          } else {
-            resolve(this.myData.data);
-          }
-        },
-        error => {
-          console.log('DEBUG api register, ERROR receiving:', error);
-          reject(error.statusText);
-      });
-    });
-    return myPromise;
-  }
+
   /*! take user data: */
   userData(sessionId) {
     const myPromise = new Promise((resolve, reject) => {
-      const url = this.API_URL + 'user/data.php';
+      const url = this.API_URL + 'affiliate/data';
       const jsonData = JSON.stringify({
             session_id: sessionId,
             token: this.TOKEN
@@ -200,7 +157,7 @@ export class PixapiService {
           if (this.myData.result === 'error') {
             reject(this.myData.msg);
           } else {
-            resolve(this.myData.data.data);
+            resolve(this.myData.data);
           }
         },
         error => {
@@ -213,7 +170,7 @@ export class PixapiService {
   /*! edit user data: */
   editUser(newName, newEmail, newPass, sessionId) {
     const myPromise = new Promise((resolve, reject) => {
-    const url = this.API_URL + 'user/edit.php';
+    const url = this.API_URL + 'user/edit';
     const jsonData = JSON.stringify({
       email: newEmail,
       pass: newPass,
