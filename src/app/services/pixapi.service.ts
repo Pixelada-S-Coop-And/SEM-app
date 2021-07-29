@@ -39,7 +39,7 @@ export interface IRegistration {
 export interface IUser {
   active: number;
   address: string;
-  affilitation_date: string;
+  affiliation_date: string;
   birthdate: string;
   cp: string;
   dni: string;
