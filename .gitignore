@@ -32,3 +32,5 @@ npm-debug.log*
 /e2e
 
 pixelada.keystore
+secrets.json
+SEM.apk
