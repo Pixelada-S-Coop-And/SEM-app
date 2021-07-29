@@ -28,6 +28,11 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { AutonomiaFormPage } from './pages/autonomia-form/autonomia-form.page';
 import { FormsModule } from '@angular/forms';
+import { Drivers, Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { GlobalService } from './services/global.service';
+import { HttpClientModule } from '@angular/common/http';
+import * as cordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 
 @NgModule({
   declarations: [
@@ -42,9 +47,16 @@ import { FormsModule } from '@angular/forms';
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
-    ComponentsModule
+    ComponentsModule,
+    IonicStorageModule.forRoot(),
+    HttpClientModule,
+    IonicStorageModule.forRoot({
+      driverOrder: [cordovaSQLiteDriver._driver, Drivers.IndexedDB]
+    })
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

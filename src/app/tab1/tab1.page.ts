@@ -17,8 +17,11 @@
  *  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { INotification } from '../services/pixapi.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-tab1',
@@ -28,7 +31,8 @@ import { INotification } from '../services/pixapi.service';
 export class Tab1Page {
 testNotification1: INotification;
 testNotification2: INotification;
-  constructor() {
+  constructor(private sessionSvc: SessionService, private toastCtrl: ToastController,
+              private router: Router) {
     this.testNotification1 = {
       ID: 1,
       creation_date: new Date().toISOString(),
@@ -53,5 +57,30 @@ testNotification2: INotification;
         link: 'www'
       }]
     }
+  }
+  ionViewWillEnter() {
+    console.log('tab1 will enter');
+    // we check if logged and we are an active user
+    this.sessionSvc.userData().then(
+      (data) => {
+        // do nothing
+      },
+      (error) => {
+        this.presentToast('Usuario no registrado! error:' + error);
+        this.router.navigateByUrl('/login');
+    })
+    .catch(
+        (error) => {
+          this.presentToast('Usuario no registrado! error:' + error);
+          this.router.navigateByUrl('/login');
+    });
+  }
+  async presentToast(text) {
+    const toast = await this.toastCtrl.create({
+      message: text,
+      position: 'bottom',
+      duration: 4000
+    });
+    toast.present();
   }
 }
