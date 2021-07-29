@@ -21,6 +21,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '../services/session.service';
 import { ToastController } from '@ionic/angular';
+import { IUser } from '../services/pixapi.service';
 
 @Component({
   selector: 'app-tab2',
@@ -29,16 +30,34 @@ import { ToastController } from '@ionic/angular';
 })
 export class Tab2Page {
 name: string;
+surnames: string;
+affiliation_date: string;
+dni: string;
+section_name: string;
+job: string;
+birthdate: string;
+address: string;
+phone: number;
+email: string;
+
   constructor(public sessionSvc: SessionService, public router: Router,
               public toastCtrl: ToastController) {
-    this.name = 'Carolina Heras Rodriguez'
   }
   ionViewWillEnter() {
     console.log('tab2 will enter');
     // we check if logged and we are an active user
     this.sessionSvc.userData().then(
       (data) => {
-        // do nothing
+        this.name = (data as IUser).name;
+        this.surnames = (data as IUser).surnames;
+        this.affiliation_date = (data as IUser).affiliation_date;
+        this.dni = (data as IUser).dni;
+        this.section_name = (data as IUser).section_name;
+        this.job = (data as IUser).job;
+        this.birthdate = (data as IUser).birthdate;
+        this.address = (data as IUser).address;
+        this.phone = (data as IUser).phone;
+        this.email = (data as IUser).email;
       },
       (error) => {
         this.presentToast('Usuario no registrado! error:' + error);

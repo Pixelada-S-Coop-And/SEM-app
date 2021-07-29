@@ -26,42 +26,42 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="page-content">
-  <ion-label> Fecha próxima renovación: <span class="important-text"> 01-01-2030 </span> </ion-label>
+  <ion-label> Fecha de afiliación: <span class="important-text"> {{ affiliation_date }} </span> </ion-label>
   <ion-grid class="user-card2">
     <ion-row>
       <ion-col>
-        <ion-label> Nombre: <span class="important-text">{{ name }} </span> </ion-label>
+        <ion-label> Nombre: <span class="important-text">{{ name }} {{ surnames }} </span> </ion-label>
       </ion-col>
       <ion-col>
-        <ion-label> DNI: <span class="important-text"> 99999999A </span> </ion-label>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-label> Sección sindical: <span class="important-text"> Ayuntamiento de Sevilla </span> </ion-label>
-      </ion-col>
-      <ion-col>
-        <ion-label> Puesto de trabajo: <span class="important-text"> Gerente de Unidad Técnica  </span> </ion-label>
+        <ion-label> DNI: <span class="important-text"> {{ dni }} </span> </ion-label>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-label> Fecha de nacimiento: <span class="important-text"> 01-01-1978 </span> </ion-label>
+        <ion-label> Sección sindical: <span class="important-text"> {{ section_name }} </span> </ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label> Puesto de trabajo: <span class="important-text"> {{ job }} </span> </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label> Fecha de nacimiento: <span class="important-text"> {{ birthdate }} </span> </ion-label>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-grid class="user-card2">
     <ion-row>
       <ion-col>
-        <ion-label> Dirección: <span class="important-text"> Avenida Almogávares 3 1º 1 </span> </ion-label>
+        <ion-label> Dirección: <span class="important-text"> {{ address }} </span> </ion-label>
       </ion-col>
       <ion-col>
-        <ion-label> Teléfono: <span class="important-text"> 955111111 </span> </ion-label>
+        <ion-label> Teléfono: <span class="important-text"> {{ phone }} </span> </ion-label>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-label> Correo electrónico: <span class="important-text"> carolina@ayuntamientodesevilla.es </span> </ion-label>
+        <ion-label> Correo electrónico: <span class="important-text"> {{ email }} </span> </ion-label>
       </ion-col>
     </ion-row>
   </ion-grid>
