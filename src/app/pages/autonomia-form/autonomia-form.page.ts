@@ -18,7 +18,8 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { FormSendingService } from '../../services/form-sending.service';
 
 @Component({
   selector: 'app-autonomia-form',
@@ -28,16 +29,37 @@ import { ModalController } from '@ionic/angular';
 export class AutonomiaFormPage implements OnInit {
   message: string;
   title: string;
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController, private toastCtrl: ToastController,
+              private formSendSvc: FormSendingService) { 
+    this.message = '';
+    this.title = '';
+  }
 
   ngOnInit() {
   }
   send() {
     /*TODO: check if form is not blank */
-    this.modalCtrl.dismiss({
-      sent: true,
-      err: false
-    });
+    if (!this.isEmpty(this.message)) {
+      if (!this.isEmpty(this.title))  { 
+        this.formSendSvc.send(this.title, this.message).then(
+          (ok) => {
+            this.modalCtrl.dismiss({
+              sent: true,
+              err: false
+            });
+          },
+          (error) => {
+            this.modalCtrl.dismiss({
+              sent: false,
+              err: error
+            });
+        });
+      } else {
+        this.presentToast('¡Debes rellenar el título del mensaje!');
+      }
+    } else {
+      this.presentToast('¡Debes rellenar el cuerpo del mensaje!');
+    }
   }
 
   close() {
@@ -46,5 +68,15 @@ export class AutonomiaFormPage implements OnInit {
       err: false
     });
   }
-
+  isEmpty(strToCheck) {
+    return (strToCheck.length === 0 || !strToCheck.trim());
+  }
+  async presentToast(text) {
+    const toast = await this.toastCtrl.create({
+      message: text,
+      position: 'bottom',
+      duration: 4000
+    });
+    toast.present();
+  }
 }
