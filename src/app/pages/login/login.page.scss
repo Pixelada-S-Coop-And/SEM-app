@@ -1,0 +1,117 @@
+/* 
+ *  Copyright 2021 Pixelada s. Coop. And. <info (at) pixelada (dot) org>
+ *  
+ *  This file is part of SEM
+ *  
+ *  SEM is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  SEM is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+ ion-content {
+    background-color: #4FA8DB !important; 
+    background-size: 100% !important;
+    #content {
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 32px 18px;
+        background: #4FA8DB;
+        .login-rectangle {
+            margin-top: 35%;
+            background-color: white;
+            padding: 6px;
+            border-radius: 10px;
+            padding: 25px;
+            h1 {
+                font-size: 20px;
+                text-align: center;
+                letter-spacing: -0.48px;
+                line-height: 27px;
+                font-weight: bold;
+                margin-top: 0;
+                margin-bottom: 24px;
+            }
+            ion-item {
+                opacity: 0.7;
+                height: 40px;
+                line-height: 40px;
+                border: solid thin #4FA8DB !important;
+                margin-bottom: 24px;
+                ion-input {
+                    position: relative;
+                    top: -5px;
+                    height: 40px;
+                    font-size: 15px;
+                    color: #4FA8DB;
+                    line-height: 40px;
+                }
+                ion-icon {
+                    margin-top: 2px;
+                }
+            }
+            ion-item.ion-touched {
+                opacity: 1;
+            }
+            a#login-button {
+                border-radius: 26px !important;
+                height: auto;
+                line-height: 52px;
+                font-size: 14px;
+                font-weight: bold;
+                letter-spacing: 1.4px;
+                color: #fff;
+                width: 100%;
+                display: block;
+                text-align: center;
+                background: #4FA8DB;
+                margin-bottom: 24px;
+                cursor: pointer;
+            }
+            a#login-button:hover {
+                opacity: 0.8;
+            }
+            a#forgotpass-button {
+                text-align: center;
+                font-size: 13px;
+                line-height: 18px;
+                display: block;
+                margin-bottom: 24px;
+                cursor: pointer;
+            }
+            #login-info {
+                text-align: center;
+                font-size: 13px;
+                line-height: 18px;
+                display: block;
+                // color: #4FA8DB;
+                span {
+                    opacity: 0.8;
+                }
+                a {
+                    text-decoration: none;
+                }
+            }
+        }
+        #copyright {
+            color: #fff;
+            font-size: 12px;
+            line-height: 18px;
+            margin-top: 80px;
+            display: block;
+            text-align: center;
+        }
+    }
+}
