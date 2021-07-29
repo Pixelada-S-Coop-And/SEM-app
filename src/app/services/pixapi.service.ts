@@ -199,7 +199,34 @@ export class PixapiService {
   //////////////////////////////////////////
   /* USER DATA */
   //////////////////////////////////////////
-  
+  /*! take user data: */
+  formSend(sessionId, title, content) {
+    const myPromise = new Promise((resolve, reject) => {
+      const url = this.API_URL + 'affiliate/form_send';
+      const jsonData = JSON.stringify({
+            session_id: sessionId,
+            token: this.TOKEN,
+            subject: title,
+            content: content
+      });
+      console.log('DEBUG api sendForm, sending:', jsonData);
+      this.http.post(url, jsonData).subscribe(
+        data => {
+          this.myData = data;
+          console.log('DEBUG api sendForm, receiving:', data);
+          if (this.myData.result === 'error') {
+            reject(this.myData.msg);
+          } else {
+            resolve(this.myData);
+          }
+        },
+        error => {
+          console.log('DEBUG api sendForm, ERROR receiving:', error);
+          reject(error.statusText);
+        });
+    });
+    return myPromise;
+  }
   //////////////////////////////////////////
   /* NOTIFICATIONS */
   //////////////////////////////////////////
