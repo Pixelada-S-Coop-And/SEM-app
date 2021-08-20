@@ -16,23 +16,25 @@
   You should have received a copy of the GNU General Public License
   along with SEM.  If not, see <https://www.gnu.org/licenses/>.
  -->
-<div (click)="expand()">
+<div>
   <ion-grid>
     <ion-row>
-      <ion-col>
-  <span class="notification-text notification-title" [ngClass]="{'notification-text-disabled' : hided == true}"> {{ myNotification.title }} </span><br/>
-  <span class="notification-text" [ngClass]="{'notification-text-hided' : hided == true}">
-    <ion-datetime [(ngModel)]="myNotification.creation_date" displayFormat="DD/MM/YY" readonly="true">
-    </ion-datetime>
-  </span>
-  <div (click)="hide()" class="delete-notification enter" [ngClass]="{'delete-notification-disabled' : hided == true}">
-    <ion-icon *ngIf="hided === false" name="eye-off-outline" size="large"></ion-icon>
-    <ion-icon *ngIf="hided === true" name="eye-outline" size="large"></ion-icon>
-  </div>
+      <ion-col size="10" (click)="expand()">
+        <span class="notification-text notification-title" [ngClass]="{'notification-text-disabled' : hided == true}"> {{ myNotification.title }} </span><br/>
+        <span class="notification-text" [ngClass]="{'notification-text-hided' : hided == true}">
+          <ion-datetime [(ngModel)]="myNotification.creation_date" displayFormat="DD/MM/YY" readonly="true">
+          </ion-datetime>
+        </span>
+      </ion-col>
+      <ion-col size="2" (click)="hide()">
+        <div class="delete-notification enter" [ngClass]="{'delete-notification-disabled' : hided == true}">
+          <ion-icon *ngIf="hided === false" name="eye-off-outline" size="large"></ion-icon>
+          <ion-icon *ngIf="hided === true" name="eye-outline" size="large"></ion-icon>
+        </div>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="hided === false && expanded === true">
-      <ion-col>
+    <ion-row *ngIf="hided === false && expanded === true" (click)="expand()">
+      <ion-col >
         <div class="notification-text" [innerHtml]="description">
         </div>
       </ion-col>
