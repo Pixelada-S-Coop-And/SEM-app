@@ -41,8 +41,8 @@ export interface IUser {
   address: string;
   affiliation_date: string;
   birthdate: string;
-  cp: string;
-  dni: string;
+  zipcode: string;
+  id_card: string;
   email: string;
   id: number;
   job: string;

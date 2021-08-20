@@ -51,11 +51,14 @@ email: string;
         this.name = (data as IUser).name;
         this.surnames = (data as IUser).surnames;
         this.affiliation_date = (data as IUser).affiliation_date;
-        this.dni = (data as IUser).dni;
+        this.dni = (data as IUser).id_card;
         this.section_name = (data as IUser).section_name;
         this.job = (data as IUser).job;
         this.birthdate = (data as IUser).birthdate;
-        this.address = (data as IUser).address;
+        this.address = (data as IUser).address + ' '
+          + (data as IUser).zipcode 
+          + ' ' + (data as IUser).location
+          + ' (' + (data as IUser).province + ')';
         this.phone = (data as IUser).phone;
         this.email = (data as IUser).email;
       },
