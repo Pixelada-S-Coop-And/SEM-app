@@ -29,6 +29,8 @@ export class GlobalService {
   private _storage: Storage | null = null;
   // storage keys
   session_id_key: string = 'KEY_SESSION_ID';
+  last_time_notified_key: string = 'KEY_LAST_TIME_NOTIFIED';
+  notifications_list_key: string = 'KEY_NOTIFFICATIONS_LIST';
 
   constructor( private storage: Storage) { 
     this.init();

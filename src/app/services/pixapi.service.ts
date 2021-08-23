@@ -59,16 +59,21 @@ export interface IUser {
 }
 
 export interface INotification {
-  ID: number;
-  creation_date: string;
-  title: string;
-  text: string;
+  id: number;
+  time: string;
+  subject: string;
+  content: string;
   section: string[];
-  link: string;
-  docs: {
+  blog_post_url: string;
+  attachments: {
+    id: number,
+    order: number,
     title: string;
-    link: string;
+    url: string;
   }[];
+  active: number;
+  global: number,
+  expiration_time: string;
 }
 
 @Injectable({
@@ -233,7 +238,7 @@ export class PixapiService {
   /*! get notifications list: */
   notificationsList(lastTime, sessionId): Promise<string[]> {
     return new Promise((resolve, reject) => {
-    const url = this.API_URL + 'user/notifications.php';
+    const url = this.API_URL + 'message/list';
     const jsonData = JSON.stringify({
       last_time: lastTime,
       session_id: sessionId,

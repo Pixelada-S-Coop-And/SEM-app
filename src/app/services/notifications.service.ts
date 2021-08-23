@@ -18,30 +18,41 @@
  */
 
 import { Injectable } from '@angular/core';
-import { PixapiService } from './pixapi.service';
+import { PixapiService, INotification } from './pixapi.service';
 import { Storage } from '@ionic/storage';
+import { GlobalService } from './global.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationsService {
-STORAGE_KEY_LISTS = 'notifications_list';
-STORAGE_KEY_TIME = 'notifications_last_time';
-STORAGE_KEY_NOTIFIED = 'notifications_notified';
-
-  constructor(private myApi: PixapiService, private myStorage: Storage) { }
+  constructor(private myApi: PixapiService, private myStorage: Storage,
+              private global: GlobalService) { }
 
   /*function for getting a notifications list*/
   getNotifications(): Promise<any[]> {
     return new Promise((resolve, reject) => {
-      this.myStorage.get(this.myApi.SESSION_ID).then(
+      this.myStorage.get(this.global.session_id_key).then(
         (id) => {
           this.myApi.notificationsList('0', id).then(
-            (notList) => {
-              resolve(notList);
+            (data) => {
+              this.myStorage.set(this.global.last_time_notified_key, (data as any).time);
+              this.storeNotifications((data as any).messages).then (
+                (ok) => {
+                  this.notificationsList().then(
+                    (notifications: INotification[]) => {
+                      resolve(notifications);
+                    },
+                    (err) => {
+                      resolve((data as any).messages as INotification[]);
+                  });
+                },
+                (err) => {
+                  resolve((data as any).messages as INotification[]);
+              });
             },
-            (listErr) => {
-              reject(listErr);
+            (err) => {
+              reject(err);
           });
         },
         (idErr) => {
@@ -52,69 +63,72 @@ STORAGE_KEY_NOTIFIED = 'notifications_notified';
   /*function for getting last notifications list*/
   getLastNotifications(): Promise<any[]> {
     return new Promise((resolve, reject) => {
-      this.myStorage.get(this.myApi.SESSION_ID).then(
+      this.myStorage.get(this.global.session_id_key).then(
         (id) => {
-          this.myStorage.get(this.STORAGE_KEY_TIME).then (
-            (time: number) => {
-              this.myApi.notificationsList(time, id).then(
-                (data: any) => {
-                  // saving notifications
-                  this.saveNotifications(data.notifications).then(
+          this.myStorage.get(this.global.last_time_notified_key).then(
+            (lastTime) => {
+              this.myApi.notificationsList(lastTime, id).then(
+                (data) => {
+                  this.myStorage.set(this.global.last_time_notified_key, (data as any).time);
+                  this.storeNotifications((data as any).messages).then (
                     (ok) => {
-                      // saving time
-                      this.myStorage.set(this.STORAGE_KEY_TIME, data.time);
-                      console.log('resolvemos con las notificaciones:', data.notifications);
-                      resolve(data.notifications);
+                      this.notificationsList().then(
+                        (notifications: INotification[]) => {
+                          resolve(notifications);
+                        },
+                        (err) => {
+                          resolve((data as any).messages as INotification[]);
+                      });
+                    },
+                    (err) => {
+                      resolve((data as any).messages as INotification[]);
                   });
                 },
-                (listErr) => {
-                  reject(listErr);
+                (err) => {
+                  reject(err);
               });
             },
-            (err) => {
-              this.myApi.notificationsList(0, id).then(
-                (notList) => {
-                  resolve(notList);
+            (noLastTime) => {
+              this.getNotifications().then(
+                (ok) => {
+                  resolve(ok);
                 },
-                (listErr) => {
-                  reject(listErr);
+                (err) => {
+                  reject(err);
               });
-            });
-          },
+          });
+        },
         (idErr) => {
           reject(idErr);
       });
     });
   }
   /*! function for saving notifications */
-  private saveNotifications(list: string[]): Promise<string> {
+  private storeNotifications(list: INotification[]): Promise<string> {
     return new Promise((resolve) => {
       this.notificationsList().then(
-        (oldList: string[]) => {
+        (oldList: INotification[]) => {
           let newList = list;
           if ( oldList) {
             if (oldList.length > 0) {
               newList = oldList.concat(list);
             }
           }
-          this.myStorage.set(this.STORAGE_KEY_LISTS, newList);
+          newList = this.getUniqueListBy(newList, 'id');
+          this.myStorage.set(this.global.notifications_list_key, newList);
           resolve('ok');
         },
         (err) => {
-          this.myStorage.set(this.STORAGE_KEY_LISTS, list);
+          this.myStorage.set(this.global.notifications_list_key, list);
           resolve('ok');
       });
     });
   }
-  /*! function for override notifications */
-  private overrideNotifications(list) {
-    this.myStorage.set(this.STORAGE_KEY_LISTS, list);
-  }
-  /*! function for getting notifications */
-  notificationsList(): Promise<string[]>  {
+  /*! function for getting local saved notifications */
+  notificationsList(): Promise<INotification[]>  {
     return new Promise((resolve, reject) => {
-      this.myStorage.get(this.STORAGE_KEY_LISTS).then(
-        (list: string[]) => {
+      this.myStorage.get(this.global.notifications_list_key).then(
+        (list: INotification[]) => {
           resolve(list);
         },
         (listErr) => {
@@ -123,21 +137,24 @@ STORAGE_KEY_NOTIFIED = 'notifications_notified';
     });
   }
   /*! function for removing a notification */
-  deleteNotification(notification: string): Promise<string> {
+  deleteNotification(notificationId: number): Promise<string> {
     return new Promise((resolve) => {
       this.notificationsList().then(
         (list) => {
-        const newList = list.filter(obj => obj !== notification);
-        this.overrideNotifications(newList);
+        const newList = list.filter(obj => obj.id !== notificationId);
+        this.myStorage.set(this.global.notifications_list_key, newList);
         resolve('ok');
       });
     });
   }
   /*! Notified function to set flag */
+  /*
   notified(notified: boolean) {
     this.myStorage.set(this.STORAGE_KEY_NOTIFIED, notified);
   }
+  */
   /*! Is user notified? */
+  /*
   isNotified(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.myStorage.get(this.STORAGE_KEY_NOTIFIED).then(
@@ -149,4 +166,8 @@ STORAGE_KEY_NOTIFIED = 'notifications_notified';
       });
     });
   }
+  */
+  private getUniqueListBy(arr: INotification[], key) {
+    return [...new Map(arr.map(item => [item[key], item])).values()]
+}
 }
