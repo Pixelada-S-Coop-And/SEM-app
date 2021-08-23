@@ -147,6 +147,18 @@ export class NotificationsService {
       });
     });
   }
+  /*! function for updating a notification */
+  updateNotification(notification: INotification): Promise<string> {
+    return new Promise((resolve) => {
+      this.notificationsList().then(
+        (list) => {
+        const index = list.findIndex(obj => obj.id === notification.id);
+        list[index] = notification;
+        this.myStorage.set(this.global.notifications_list_key, list);
+        resolve('ok');
+      });
+    });
+  }
   /*! Notified function to set flag */
   /*
   notified(notified: boolean) {

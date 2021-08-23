@@ -17,9 +17,11 @@
  *  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { INotification } from '../../services/pixapi.service';
+import { NotificationsService } from '../../services/notifications.service';
+
 
 @Component({
   selector: 'app-notification-box',
@@ -28,12 +30,12 @@ import { INotification } from '../../services/pixapi.service';
 })
 export class NotificationBoxComponent implements OnInit {
   @Input() myNotification: INotification;
-  hided: boolean;
+  @Output() removeNotification = new EventEmitter<INotification>();
   expanded: boolean;
   description: SafeHtml;
+  url_invite_text: string = '<p> Puedes ver la noticia en el blog, mediante tu navegador web, haciendo click aquí </p>';
 
-  constructor( public sanitizer: DomSanitizer) { 
-    this.hided = false;
+  constructor( public sanitizer: DomSanitizer, public notificationsSvc: NotificationsService) { 
     this.expanded = false;
   }
 
@@ -44,7 +46,7 @@ export class NotificationBoxComponent implements OnInit {
   }
 
   expand() {
-    if(this.hided !== true) {
+    if(this.myNotification.active) {
       if(this.expanded === true) {
         this.expanded = false;
       } else {
@@ -54,11 +56,21 @@ export class NotificationBoxComponent implements OnInit {
   }
 
   hide(){
-    if(this.hided === true) {
-      this.hided = false;
+    if(this.myNotification.active !== 0) {
+      this.myNotification.active = 0;
+      this.notificationsSvc.updateNotification(this.myNotification);
     } else {
-      this.hided = true;
+      this.myNotification.active = 1;
+      this.notificationsSvc.updateNotification(this.myNotification);
     }
+  }
+
+  remove() {
+    this.removeNotification.emit(this.myNotification);
+  }
+
+  openUrl(url) {
+    console.log('trying to open: ' + url);
   }
 
 }

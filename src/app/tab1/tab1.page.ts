@@ -19,7 +19,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { INotification } from '../services/pixapi.service';
 import { SessionService } from '../services/session.service';
 import { NotificationsService } from '../services/notifications.service';
@@ -34,7 +34,8 @@ myNotifications: INotification[];
 notificationsLoaded: boolean;
 
   constructor(private sessionSvc: SessionService, private toastCtrl: ToastController,
-              private router: Router, public notificationsSvc: NotificationsService) {
+              private router: Router, public notificationsSvc: NotificationsService,
+              private alertCtrl: AlertController) {
     this.notificationsLoaded = false;
   }
   ionViewWillEnter() {
@@ -62,6 +63,40 @@ notificationsLoaded: boolean;
         console.log('error, returned notifications:' + err);
         this.notificationsLoaded = true;
     });
+  }
+  /*! function event of removing a notification */
+  async onRemoveNotification(notification: INotification) {
+    const alertConfirm = await this.alertCtrl.create({
+      header: 'Borrar la notificación',
+      message: 'Esta acción no podrá ser deshecha',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+        },
+        {
+          text: 'Sí',
+          handler: () => {
+            console.log('deleting notification:' + notification.id);
+            this.notificationsSvc.deleteNotification(notification.id).then(
+              (ok) => {
+                this.notificationsSvc.notificationsList().then(
+                  (val) => {
+                    this.myNotifications = val;
+                    for (const notification of this.myNotifications) {
+                      console.log('current notificacions:' + notification.id);
+                    }
+                  },
+                  (err) => {
+                    console.log('error, returned notifications:' + err);
+                    this.myNotifications = null;
+                });
+            });
+          }
+        }
+      ]
+    });
+    await alertConfirm.present();
   }
   async presentToast(text) {
     const toast = await this.toastCtrl.create({

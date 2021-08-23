@@ -19,23 +19,44 @@
 <div>
   <ion-grid>
     <ion-row>
-      <ion-col size="10" (click)="expand()">
-        <span class="notification-text notification-title" [ngClass]="{'notification-text-disabled' : hided == true}"> {{ myNotification.subject }} </span><br/>
-        <span class="notification-text" [ngClass]="{'notification-text-hided' : hided == true}">
+      <ion-col sizeMd="10" size="8" (click)="expand()">
+        <span class="notification-text notification-title" [ngClass]="{'notification-text-disabled' : myNotification.active === 0}"> {{ myNotification.subject }} </span><br/>
+        <span class="notification-text" [ngClass]="{'notification-text-hided' : myNotification.active === 0}">
           <ion-datetime [(ngModel)]="myNotification.time" displayFormat="hh:mm DD/MM/YY" readonly="true">
           </ion-datetime>
         </span>
       </ion-col>
-      <ion-col size="2" (click)="hide()">
-        <div class="delete-notification enter" [ngClass]="{'delete-notification-disabled' : hided == true}">
-          <ion-icon *ngIf="hided === false" name="eye-off-outline" size="large"></ion-icon>
-          <ion-icon *ngIf="hided === true" name="eye-outline" size="large"></ion-icon>
+      <ion-col sizeMd="1" size="2" (click)="hide()">
+        <div class="delete-notification enter" [ngClass]="{'delete-notification-disabled' : myNotification.active === 0}">
+          <ion-icon *ngIf="myNotification.active !== 0" name="eye-off-outline" size="large"></ion-icon>
+          <ion-icon *ngIf="myNotification.active === 0" name="eye-outline" size="large"></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col sizeMd="1" size="2" (click)="remove()">
+        <div class="delete-notification enter" [ngClass]="{'delete-notification-disabled' : myNotification.active === 0}">
+          <ion-icon name="trash-outline" size="large"></ion-icon>
         </div>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="hided === false && expanded === true" (click)="expand()">
+    <ion-row *ngIf="myNotification.active !== 0 && expanded === true" (click)="expand()">
       <ion-col >
         <div class="notification-text" [innerHtml]="description">
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="myNotification.active !== 0 && expanded === true && myNotification.blog_post_url">
+      <ion-col (click)="openUrl( myNotification.blog_post_url)">
+        <div class="notification-text"  [innerHtml]='url_invite_text'>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="myNotification.active !== 0 && expanded === true && myNotification.attachments">
+      <ion-col (click)="openUrl( attachment.url)" *ngFor="let attachment of this.myNotification.attachments" sizeXs="6" sizeSm="6" sizeMd="3" sizeLg="2" sizeXl="2" >
+        <div class="ion-text-center">
+          <span class="notification-text">
+            <ion-icon name="document-outline" size="large"></ion-icon>
+          </span><br/>
+          <span class="notification-text">  {{ attachment.title }} </span><br/>
         </div>
       </ion-col>
     </ion-row>
