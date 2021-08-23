@@ -33,6 +33,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { GlobalService } from './services/global.service';
 import { HttpClientModule } from '@angular/common/http';
 import * as cordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import * as cordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    InAppBrowser
   ],
   bootstrap: [AppComponent],
 })
