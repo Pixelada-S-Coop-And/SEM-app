@@ -21,6 +21,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { INotification } from '../../services/pixapi.service';
 import { NotificationsService } from '../../services/notifications.service';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 
 @Component({
@@ -35,7 +36,8 @@ export class NotificationBoxComponent implements OnInit {
   description: SafeHtml;
   url_invite_text: string = '<p> Puedes ver la noticia en el blog, mediante tu navegador web, haciendo click aquí </p>';
 
-  constructor( public sanitizer: DomSanitizer, public notificationsSvc: NotificationsService) { 
+  constructor( public sanitizer: DomSanitizer, public notificationsSvc: NotificationsService,
+                public iab: InAppBrowser) { 
     this.expanded = false;
   }
 
@@ -71,6 +73,8 @@ export class NotificationBoxComponent implements OnInit {
 
   openUrl(url) {
     console.log('trying to open: ' + url);
+    const ref = this.iab.create(url, '_system', 'location=yes');
+    ref.close();
   }
 
 }
