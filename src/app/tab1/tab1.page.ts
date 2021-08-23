@@ -22,6 +22,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { INotification } from '../services/pixapi.service';
 import { SessionService } from '../services/session.service';
+import { NotificationsService } from '../services/notifications.service';
 
 @Component({
   selector: 'app-tab1',
@@ -29,34 +30,12 @@ import { SessionService } from '../services/session.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-testNotification1: INotification;
-testNotification2: INotification;
+myNotifications: INotification[];
+notificationsLoaded: boolean;
+
   constructor(private sessionSvc: SessionService, private toastCtrl: ToastController,
-              private router: Router) {
-    this.testNotification1 = {
-      ID: 1,
-      creation_date: new Date().toISOString(),
-      title: 'Notificación de prueba',
-      text: '<p>Abierto el plazo de inscripción al curso tal</p> <p> Apuntaros! </p>',
-      section: ['Todas'],
-      link: 'www',
-      docs: [{
-        title: 'prueba',
-        link: 'www'
-      }]
-    }
-    this.testNotification2 = {
-      ID: 2,
-      creation_date: new Date().toISOString(),
-      title: 'Otra notificación de prueba',
-      text: '<p>Inicio del proceso de alegaciones para tal cual cosa</p> <p> Alegad!</p>',
-      section: ['Todas'],
-      link: 'www',
-      docs: [{
-        title: 'prueba',
-        link: 'www'
-      }]
-    }
+              private router: Router, public notificationsSvc: NotificationsService) {
+    this.notificationsLoaded = false;
   }
   ionViewWillEnter() {
     console.log('tab1 will enter');
@@ -73,6 +52,15 @@ testNotification2: INotification;
         (error) => {
           this.presentToast('Usuario no registrado! error:' + error);
           this.router.navigateByUrl('/login');
+    });
+    this.notificationsSvc.getLastNotifications().then(
+      (val) => {
+        this.myNotifications = val;
+        this.notificationsLoaded = true;
+      },
+      (err) => {
+        console.log('error, returned notifications:' + err);
+        this.notificationsLoaded = true;
     });
   }
   async presentToast(text) {

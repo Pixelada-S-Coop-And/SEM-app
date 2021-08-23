@@ -40,7 +40,7 @@ export class NotificationBoxComponent implements OnInit {
   ngOnInit() {}
 
   ngAfterContentInit() {
-    this.description = this.sanitizer.bypassSecurityTrustHtml(this.myNotification.text);
+    this.description = this.sanitizer.bypassSecurityTrustHtml(this.myNotification.content);
   }
 
   expand() {

@@ -26,15 +26,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="page-content">
-    <!-- <div *ngIf="myNotifications"> -->
-        <!-- <ion-grid *ngIf="myNotifications.length > 0"> -->
-        <ion-grid>
-            <app-notification-box [myNotification] = "testNotification1"></app-notification-box>
-            <app-notification-box [myNotification] = "testNotification2"></app-notification-box>
+    <div *ngIf="myNotifications"> 
+        <ion-grid *ngIf="myNotifications.length > 0">
+            <app-notification-box *ngFor="let notification of this.myNotifications" [myNotification] = "notification"></app-notification-box>
         </ion-grid>
-       <!-- <div *ngIf="myNotifications.length == 0 && notificationsLoaded" id="no-notification">No hay ninguna<br />notificación</div>
-       
-  </div>
+        <div *ngIf="myNotifications.length == 0 && notificationsLoaded" id="no-notification">No hay ninguna<br />notificación</div>
+    </div>
   <div *ngIf="!myNotifications && notificationsLoaded" id="no-notification">No hay ninguna<br />notificación</div>
-  -->
 </ion-content>
