@@ -36,20 +36,13 @@ export class NotificationsService {
         (id) => {
           this.myApi.notificationsList('0', id).then(
             (data) => {
-              this.myStorage.set(this.global.last_time_notified_key, (data as any).time);
-              this.storeNotifications((data as any).messages).then (
-                (ok) => {
-                  this.notificationsList().then(
-                    (notifications: INotification[]) => {
-                      resolve(notifications);
-                    },
-                    (err) => {
-                      resolve((data as any).messages as INotification[]);
-                  });
-                },
+              this.saveReturnNotificationsTime(data).then(
+                (notifications) => {
+                  resolve(notifications as INotification[]);
+                  },
                 (err) => {
-                  resolve((data as any).messages as INotification[]);
-              });
+                  reject(err);
+              });  
             },
             (err) => {
               reject(err);
@@ -69,20 +62,13 @@ export class NotificationsService {
             (lastTime) => {
               this.myApi.notificationsList(lastTime, id).then(
                 (data) => {
-                  this.myStorage.set(this.global.last_time_notified_key, (data as any).time);
-                  this.storeNotifications((data as any).messages).then (
-                    (ok) => {
-                      this.notificationsList().then(
-                        (notifications: INotification[]) => {
-                          resolve(notifications);
-                        },
-                        (err) => {
-                          resolve((data as any).messages as INotification[]);
-                      });
+                  this.saveReturnNotificationsTime(data).then(
+                    (notifications) => {
+                      resolve(notifications as INotification[]);
                     },
                     (err) => {
-                      resolve((data as any).messages as INotification[]);
-                  });
+                      reject(err);
+                  });                  
                 },
                 (err) => {
                   reject(err);
@@ -132,7 +118,7 @@ export class NotificationsService {
           resolve(list);
         },
         (listErr) => {
-          reject(null);
+          reject('No stored notifications');
       });
     });
   }
@@ -179,6 +165,38 @@ export class NotificationsService {
     });
   }
   */
+  private saveReturnNotificationsTime(data: any) {
+    return new Promise((resolve, reject) => {
+      if (data != null) {
+        this.myStorage.set(this.global.last_time_notified_key, (data as any).time);
+        if ((data as any).messages != null) {
+          this.storeNotifications((data as any).messages).then (
+            (ok) => {
+              this.notificationsList().then(
+                (notifications: INotification[]) => {
+                  resolve(notifications);
+                },
+                (err) => {
+                  resolve((data as any).messages as INotification[]);
+                });
+            },
+            (err) => {
+              resolve((data as any).messages as INotification[]);
+          });
+        } else {
+          this.notificationsList().then(
+            (notifications: INotification[]) => {
+              resolve(notifications);
+            },
+            (err) => {
+              reject(err);
+          });
+        }
+      } else {
+        reject('No data returned from API in notifications');
+      }
+    });
+  }
   private getUniqueListBy(arr: INotification[], key) {
     return [...new Map(arr.map(item => [item[key], item])).values()]
 }
