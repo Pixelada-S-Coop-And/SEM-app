@@ -1,0 +1,31 @@
+.logo-big {
+    display: block;
+    height: 450px;
+    max-height: 20vh;
+}
+ion-header {
+    background: white;
+}
+ion-content {
+    background-color: white; 
+    --background: none;
+    background-image: url('../../../assets/ICONO\ SKYLINE\ SEVILLA.png');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    .inline-button {
+        display: inline-block;
+    }
+    .action-button-medium {
+        text-align: center;
+        justify-content: center;
+        margin: auto;
+        .text {
+            font-size: calc(8px + 2.5vw);
+        }
+        .image {
+            width: 80%;
+            margin: auto;
+        }
+    }
+}

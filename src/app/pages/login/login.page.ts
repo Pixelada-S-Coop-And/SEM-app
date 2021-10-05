@@ -41,7 +41,7 @@ export class LoginPage {
     // we check if logged and we are an active user
     this.sessionSvc.userData().then(
       (data) => {
-        this.router.navigateByUrl('/tabs');
+        this.router.navigateByUrl('main');
       },
       (error) => {
         // do nothing
@@ -59,7 +59,7 @@ export class LoginPage {
         console.log('recibiendo id de sesión: ', session_id);
         this.globalSvc.set(this.globalSvc.session_id_key, session_id);
         this.presentToast('Has entrado en tu carnet virtual!');
-        this.router.navigateByUrl('tabs');
+        this.router.navigateByUrl('main');
       },
       (errorMsg) => {        
         this.presentToast('falló la autenticación: '+ errorMsg);
