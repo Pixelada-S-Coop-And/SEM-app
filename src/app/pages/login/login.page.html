@@ -19,18 +19,30 @@
  
  <ion-content [fullscreen]="true">
   <div id="content">
-      <div class="login-rectangle">
-          <!--<ion-img src="../../../assets/images/ac_logo.png"></ion-img>-->
-          <h1 class="title_without_menubar">Acceder al <br /> Carnet virtual de SEM</h1>
-          <p>Debes proporcionar una contraseña que se te ha proporcionado desde la administración del sistema para ligar tu dispositivo a tu cuenta</p>
-          <ion-item>
-              <ion-input class="text" type="text" placeholder="PASS" [(ngModel)]="pass"></ion-input>
-          </ion-item>
-          <a id="login-button" class="btn default_buttom" expand="full" (click)="login()">
-            ENTRAR
-          </a>
-
+    <ion-grid ion-justify-content-center>
+      <ion-row ion-justify-content-center class="top-row">
+        <ion-col style="text-align: center;">
+          <ion-img src='../../../assets/icon.png' class="logo-big"></ion-img>
+        </ion-col>
+        <ion-col size='12' style="text-align: center;">
+          <p>Sindicato de Empleados Municipales</p>
+        </ion-col>
+      </ion-row>
+      <ion-row ion-justify-content-center>
+        <ion-col size='12' style="text-align: center;">
+          <ion-input class="login-pass" type="text" placeholder="CONTRASEÑA" [(ngModel)]="pass"></ion-input>
+        </ion-col>
+        <ion-col size='12' style="text-align: center;">
+          <div class="button" (click)="login()">
+            <div class="only-text">
+              ACCEDER
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size='12'style="text-align: center;">
           <div id="login-info"><span>Si no tienes aún tu “Contraseña” pídelo a </span><a href="mailto:sem@sevilla.org">sem@sevilla.org</a></div>
-      </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>      
   </div>
 </ion-content>
