@@ -56,6 +56,7 @@ export interface IUser {
   section_id: number;
   section_name: string;
   surnames: string;
+  number: number;
 }
 
 export interface INotification {

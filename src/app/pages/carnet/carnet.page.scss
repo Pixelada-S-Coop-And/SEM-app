@@ -21,10 +21,16 @@
     --padding-top: 20px;
     --padding-start: 10px;
     --padding-end: 10px;
-    --padding-bottom: 95px;
+    background-color: white; 
+    --background: none;
+    background-image: url('../../../assets/ICONO\ SKYLINE\ SEVILLA.png');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
     .user-card2 {
         border-top: 1px solid black;
         margin-top: 10px;
+        background: white;
     }
     .important-text {
         color: var(--ion-color-primary);

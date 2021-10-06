@@ -35,3 +35,41 @@
     color: #0C0F57;
     font-size: calc(16px + 0.5vw);
 }
+
+.button {
+    padding: 10px;
+    background-color: var(--ion-color-primary);
+    border: thick solid #C6E0E4;
+    .text {
+      display: inline-block;
+      text-align: left;
+      vertical-align: middle;
+      font-size: calc(14px + 2vw);
+      color: white;
+      max-width: 75%;
+    }
+    .only-text {
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+      font-size: calc(14px + 2vw);
+      color: white;
+    }
+    .image {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 5vw;
+      color: white;
+    }
+    .text-small {
+        font-size: calc(6px + 2vw);
+    }
+}
+.header-back {
+    border: thin solid #EE1919;
+    border-radius: 50%;
+    background: var(--ion-color-primary);
+    font-size: calc(16px + 2.5vw);
+    color: white;
+    padding: calc( 5px + 1vw);
+}
