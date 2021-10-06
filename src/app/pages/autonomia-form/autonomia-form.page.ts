@@ -20,6 +20,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { FormSendingService } from '../../services/form-sending.service';
+import { SessionService } from '../../services/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-autonomia-form',
@@ -30,13 +32,33 @@ export class AutonomiaFormPage implements OnInit {
   message: string;
   title: string;
   constructor(private modalCtrl: ModalController, private toastCtrl: ToastController,
-              private formSendSvc: FormSendingService) { 
+              private formSendSvc: FormSendingService, private sessionSvc: SessionService,
+              private router: Router) { 
     this.message = '';
     this.title = '';
   }
-
+  /*! checking if user is currently logged when creating in dialog */
   ngOnInit() {
+    // we check if logged and we are an active user
+    this.sessionSvc.userData().then(
+      (data) => {
+        // do nothing
+      },
+      (error) => {
+        this.presentToast('Usuario no registrado! error:' + error);
+        this.router.navigateByUrl('/login');
+      })
+    .catch(
+      (error) => {
+        this.presentToast('Usuario no registrado! error:' + error);
+        this.modalCtrl.dismiss({
+          sent: false,
+          err: error
+        });
+        this.router.navigateByUrl('/login');
+    });
   }
+ 
   send() {
     /*TODO: check if form is not blank */
     if (!this.isEmpty(this.message)) {
