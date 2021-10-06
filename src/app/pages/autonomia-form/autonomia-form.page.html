@@ -55,7 +55,19 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar>
+    <div slot="end" class="button" (click)="back()">
+      <div class="only-text">
+        CANCELAR
+      </div>
+    </div>
+    <div slot="end" class="button" (click)="send()">
+      <div class="only-text">
+        ENVIAR
+      </div>
+    </div>
+    <!--
     <ion-button slot="end" (click)="back()"> cancelar </ion-button>
     <ion-button slot="end" (click)="send()"> enviar </ion-button>
+    -->
   </ion-toolbar>
 </ion-footer>
