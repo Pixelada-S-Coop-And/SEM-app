@@ -1,0 +1,68 @@
+<!--
+  Copyright 2021 Pixelada s. Coop. And. <info (at) pixelada (dot) org>
+  
+  This file is part of SEM
+  
+  SEM is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  SEM is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
+ -->
+
+ <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Carnet de afiliación
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="page-content">
+  <ion-label> Fecha de afiliación: <span class="important-text"> {{ affiliation_date }} </span> </ion-label>
+  <ion-grid class="user-card2">
+    <ion-row>
+      <ion-col size="12" size-md="6" >
+        <ion-label> Nombre: <span class="important-text">{{ name }} {{ surnames }} </span> </ion-label>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-label> DNI: <span class="important-text"> {{ dni }} </span> </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-label> Sección sindical: <span class="important-text"> {{ section_name }} </span> </ion-label>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-label> Puesto de trabajo: <span class="important-text"> {{ job }} </span> </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label> Fecha de nacimiento: <span class="important-text"> {{ birthdate }} </span> </ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="user-card2">
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-label> Dirección: <span class="important-text"> {{ address }} </span> </ion-label>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-label> Teléfono: <span class="important-text"> {{ phone }} </span> </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label> Correo electrónico: <span class="important-text"> {{ email }} </span> </ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
