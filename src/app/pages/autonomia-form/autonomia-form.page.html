@@ -16,26 +16,37 @@
   You should have received a copy of the GNU General Public License
   along with SEM.  If not, see <https://www.gnu.org/licenses/>.
  -->
- 
+
  <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Manda tu consulta
-    </ion-title>
-  </ion-toolbar>
+  <ion-grid style="background: white; border-bottom: thin solid grey;">
+    <ion-row class="ion-align-items-center">
+      <ion-col sizeXs=2 size=1>
+        <ion-img src="../../../assets/icon/central/ICONO CITA PREVIA.png"></ion-img>
+      </ion-col>
+      <ion-col sizeXs=7 size=8 >
+        <p class="title">
+          Cita previa
+        </p>
+      </ion-col>
+      <ion-col size=3 style="text-align: center;">
+        <ion-icon class="header-back" name="chevron-back-outline" (click)="back()"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
 </ion-header>
+
 
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col>
+      <ion-col style="padding: 0;">
         <ion-label>Asunto:</ion-label>
         <ion-input class="box" type="text" maxlength="30" [(ngModel)]="title"></ion-input>
       </ion-col>
     </ion-row>
-      <ion-col>
+      <ion-col style="padding: 0;">
         <ion-label>Mensaje:</ion-label>
-        <ion-textarea class="box" rows="10" [(ngModel)]="message" name="message"></ion-textarea>
+        <ion-textarea class="box" cols="10" rows="10" [(ngModel)]="message" name="message"></ion-textarea>
       </ion-col>
     <ion-row>
       
@@ -44,7 +55,7 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-    <ion-button slot="end" (click)="close()"> cancelar </ion-button>
+    <ion-button slot="end" (click)="back()"> cancelar </ion-button>
     <ion-button slot="end" (click)="send()"> enviar </ion-button>
   </ion-toolbar>
 </ion-footer>

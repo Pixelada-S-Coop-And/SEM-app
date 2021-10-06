@@ -16,7 +16,22 @@
  *  You should have received a copy of the GNU General Public License
  *  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
  */
+ion-content {
+   --padding-top: 20px;
+   --padding-start: 10px;
+   --padding-end: 10px;
+   background-color: white; 
+   --background: none;
+   background-image: url('../../../assets/ICONO\ SKYLINE\ SEVILLA.png');
+   background-position: center bottom;
+   background-repeat: no-repeat;
+   background-size: contain;
+}
+
 
  .box {
     --background: #ddd;
+    font-size: calc(14px + 2vw);
+    border: medium solid #C6E0E4;
+    color: var(--ion-color-primary);
  }

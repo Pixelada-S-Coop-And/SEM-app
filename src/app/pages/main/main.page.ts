@@ -21,6 +21,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '../../services/session.service';
 import { ToastController } from '@ionic/angular';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'app-main',
@@ -30,7 +31,7 @@ import { ToastController } from '@ionic/angular';
 export class MainPage {
 
   constructor(private router: Router, private sessionSvc: SessionService,
-              private toastCtrl: ToastController) { }
+              private toastCtrl: ToastController, private global: GlobalService) { }
 
   ionViewWillEnter() {
     console.log('main will enter');
@@ -50,6 +51,14 @@ export class MainPage {
           this.presentToast('Usuario no registrado! error:' + error);
           this.router.navigateByUrl('/login');
     });
+    if(this.global.error_sending_email) {
+      this.global.error_sending_email = false;
+      this.presentToast('Hubo un error mandando el email de cita previa, si el problema persiste contacte con soporte');
+    }
+    if (this.global.mail_sent) {
+      this.global.mail_sent = false;
+      this.presentToast('Email enviado correctamente, espere a que se le contacte');
+    }
   }
 
   async presentToast(text) {

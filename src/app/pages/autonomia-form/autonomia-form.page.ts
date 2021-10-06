@@ -22,6 +22,7 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { FormSendingService } from '../../services/form-sending.service';
 import { SessionService } from '../../services/session.service';
 import { Router } from '@angular/router';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'app-autonomia-form',
@@ -33,7 +34,7 @@ export class AutonomiaFormPage implements OnInit {
   title: string;
   constructor(private modalCtrl: ModalController, private toastCtrl: ToastController,
               private formSendSvc: FormSendingService, private sessionSvc: SessionService,
-              private router: Router) { 
+              private router: Router, private global: GlobalService) { 
     this.message = '';
     this.title = '';
   }
@@ -60,21 +61,21 @@ export class AutonomiaFormPage implements OnInit {
   }
  
   send() {
+    this.global.mail_sent = false;
+    this.global.error_sending_email = false;
     /*TODO: check if form is not blank */
     if (!this.isEmpty(this.message)) {
       if (!this.isEmpty(this.title))  { 
         this.formSendSvc.send(this.title, this.message).then(
           (ok) => {
-            this.modalCtrl.dismiss({
-              sent: true,
-              err: false
-            });
+            this.global.mail_sent = true;
+            this.global.error_sending_email = false;
+            this.router.navigateByUrl('main');
           },
           (error) => {
-            this.modalCtrl.dismiss({
-              sent: false,
-              err: error
-            });
+            this.global.mail_sent = false;
+            this.global.error_sending_email = true;
+            this.router.navigateByUrl('main');
         });
       } else {
         this.presentToast('¡Debes rellenar el título del mensaje!');
@@ -84,11 +85,11 @@ export class AutonomiaFormPage implements OnInit {
     }
   }
 
-  close() {
-    this.modalCtrl.dismiss({
-      sent: false,
-      err: false
-    });
+  back() {
+    this.global.mail_sent = false;
+    this.global.error_sending_email = false;
+    console.log('going back to main page');
+    this.router.navigateByUrl('main');
   }
   isEmpty(strToCheck) {
     return (strToCheck.length === 0 || !strToCheck.trim());
