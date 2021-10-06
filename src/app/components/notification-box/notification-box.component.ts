@@ -72,6 +72,10 @@ export class NotificationBoxComponent implements OnInit {
   }
 
   openUrl(url) {
+    let regExp = new RegExp('(http|https)://');
+    if(!regExp.test(url)) {
+      url = 'http://' + url;
+    }
     console.log('trying to open: ' + url);
     const ref = this.iab.create(url, '_system', 'location=yes');
     ref.close();
