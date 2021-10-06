@@ -1,0 +1,46 @@
+<!--
+  Copyright 2021 Pixelada s. Coop. And. <info (at) pixelada (dot) org>
+  
+  This file is part of SEM
+  
+  SEM is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  SEM is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
+ -->
+
+ <ion-header>
+  <ion-grid style="background: white; border-bottom: thin solid grey;">
+    <ion-row class="ion-align-items-center">
+      <ion-col sizeXs=2 size=1>
+        <ion-img src="../../../assets/icon/central/ICONO NOTIFICACIONES.png"></ion-img>
+      </ion-col>
+      <ion-col sizeXs=7 size=8 >
+        <p class="title">
+          Notificaciones
+        </p>
+      </ion-col>
+      <ion-col size=3 style="text-align: center;">
+        <ion-icon class="header-back" name="chevron-back-outline" (click)="back()"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
+</ion-header>
+
+<ion-content [fullscreen]="true" class="page-content">
+  <div *ngIf="myNotifications"> 
+      <ion-grid *ngIf="myNotifications.length > 0">
+          <app-notification-box *ngFor="let notification of this.myNotifications" [myNotification] = "notification" (removeNotification)="onRemoveNotification(notification)"></app-notification-box>
+      </ion-grid>
+      <div *ngIf="myNotifications.length == 0 && notificationsLoaded" id="no-notification">No hay ninguna<br />notificación</div>
+  </div>
+<div *ngIf="!myNotifications && notificationsLoaded" id="no-notification">No hay ninguna<br />notificación</div>
+</ion-content>

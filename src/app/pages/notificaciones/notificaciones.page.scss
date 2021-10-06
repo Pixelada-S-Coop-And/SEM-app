@@ -1,0 +1,86 @@
+/* 
+ *  Copyright 2021 Pixelada s. Coop. And. <info (at) pixelada (dot) org>
+ *  
+ *  This file is part of SEM
+ *  
+ *  SEM is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  SEM is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+ ion-content {
+    --padding-top: 10px;
+    background-color: white; 
+    --background: none;
+    background-image: url('../../../assets/ICONO\ SKYLINE\ SEVILLA.png');
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    ion-grid {
+        margin: 0 16px 36px;
+        background: #fff;
+        position: relative;
+        border-radius: 10px;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+        padding: 0 0 0 15px;
+        app-notification-box {
+            position: relative;
+            cursor: pointer;
+            border-bottom: solid thin #ddd;
+            display: block;
+            padding: 16px 40px 17px 0;
+            display: block;
+            font-size: 15px !important;
+            line-height: 22px;
+            font-weight: normal;
+            letter-spacing: -0.36px;
+            color: --var(--ion-color-primary);
+            span {
+                display: block;
+            }
+        }
+        app-notification:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+a.btn.default_buttom {
+    border-radius: 26px !important;
+    height: auto;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1.4px;
+    color: #fff;
+    width: 100%;
+    display: block;
+    text-align: center;
+    background: --var(--ion-color-primary);
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+a.btn.default_buttom:hover {
+    opacity: 0.8;
+}
+
+#no-notification {
+    text-align: center;
+    color: #0B0B0B;
+    opacity: 0.5;
+    font-size: 13px;
+    margin-top: 120px;
+    line-height: 22px;
+    letter-spacing: -0.33px;
+}
