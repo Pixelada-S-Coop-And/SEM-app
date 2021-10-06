@@ -24,3 +24,14 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.logo-medium {
+    display: block;
+    height: 400px;
+    max-height: 15vh;
+}
+
+.title {
+    color: #0C0F57;
+    font-size: calc(16px + 0.5vw);
+}

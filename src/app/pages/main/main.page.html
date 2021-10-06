@@ -1,11 +1,30 @@
+<!--
+  Copyright 2021 Pixelada s. Coop. And. <info (at) pixelada (dot) org>
+  
+  This file is part of SEM
+  
+  SEM is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  SEM is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
+ -->
+
 <ion-header class="ion-no-border">
   <ion-grid ion-justify-content-center>
     <ion-row ion-justify-content-center class="top-row">
       <ion-col style="text-align: center;">
-        <ion-img src='../../../assets/icon.png' class="logo-big"></ion-img>
+        <ion-img src='../../../assets/icon.png' class="logo-medium"></ion-img>
       </ion-col>
       <ion-col size='12' style="text-align: center;">
-        <p>Sindicato de Empleados Municipales</p>
+        <p class="title">Sindicato de Empleados Municipales</p>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -38,41 +57,95 @@
         <ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 style="display: flex; justify-content: center;">
-        <div class='inline-button action-button-medium action-back' > <div class="image"><ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img></div><div class="text"> CARNET </div></div>
+    <ion-row class="ion-align-items-start">
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section" (click)="goToCarnet()">
+        <div class='inline-button action-button-medium'> 
+          <div class="image">
+            <ion-img src="../../../assets/icon/central/ICONO CARNET AFILIADO.png"></ion-img>
+          </div>
+          <div class="text carnet"> CARNET </div>
+        </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 style="display: flex; justify-content: center;">
-        <div class='inline-button action-button-medium action-back' > <div class="image"><ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img></div><div class="text"> CARNET </div></div>
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section" (click)="goToNotificaciones()">
+        <div class='inline-button action-button-medium'> 
+          <div class="image">
+            <ion-img src="../../../assets/icon/central/ICONO NOTIFICACIONES.png"></ion-img>
+          </div>
+          <div class="text notificaciones"> NOTIFICACIONES </div>
+        </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 style="display: flex; justify-content: center;">
-        <div class='inline-button action-button-medium action-back' > <div class="image"><ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img></div><div class="text"> CARNET </div></div>
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+        <div class='inline-button action-button-medium'>
+          <div class="image">
+            <ion-img src="../../../assets/icon/central/ICONO AULA VIRTUAL.png"></ion-img>
+          </div>
+          <div class="text aula_virtual"> AULA VIRTUAL </div>
+        </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 style="display: flex; justify-content: center;">
-        <div class='inline-button action-button-medium action-back' > <div class="image"><ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img></div><div class="text"> CARNET </div></div>
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+        <div class='inline-button action-button-medium'>
+          <div class="image">
+            <ion-img src="../../../assets/icon/central/ICONO ENLACES.png"></ion-img>
+          </div>
+          <div class="text enlaces"> ENLACES </div>
+        </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 style="display: flex; justify-content: center;">
-        <div class='inline-button action-button-medium action-back' > <div class="image"><ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img></div><div class="text"> CARNET </div></div>
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+        <div class='inline-button action-button-medium'>
+          <div class="image">
+            <ion-img src="../../../assets/icon/central/ICONO EMPLEO AYTO SEVILLA.png"></ion-img>
+          </div>
+          <div class="text empleo"> EMPLEO </div>
+        </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 style="display: flex; justify-content: center;">
-        <div class='inline-button action-button-medium action-back' > <div class="image"><ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img></div><div class="text"> CARNET </div></div>
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+        <div class='inline-button action-button-medium'>
+          <div class="image">
+            <ion-img src="../../../assets/icon/central/ICONO FORMACIÓN.png"></ion-img>
+          </div>
+          <div class="text formacion"> FORMACION </div>
+        </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 style="display: flex; justify-content: center;">
-        <div class='inline-button action-button-medium action-back' > <div class="image"><ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img></div><div class="text"> CARNET </div></div>
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section" (click)="goToCitaPrevia()">
+        <div class='inline-button action-button-medium'>
+          <div class="image">
+            <ion-img src="../../../assets/icon/central/ICONO CITA PREVIA.png"></ion-img>
+          </div>
+          <div class="text cita_previa"> CITA PREVIA </div></div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 style="display: flex; justify-content: center;">
-        <div class='inline-button action-button-medium action-back' > <div class="image"><ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img></div><div class="text"> CARNET </div></div>
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+        <div class='inline-button action-button-medium'>
+          <div class="image">
+            <ion-img src="../../../assets/icon/central/ICONO SECC. SINDICALES SEM.png"></ion-img>
+          </div>
+          <div class="text seccs_sindicales"> SEC. SIND. SEM </div>
+        </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 style="display: flex; justify-content: center;">
-        <div class='inline-button action-button-medium action-back' > <div class="image"><ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img></div><div class="text"> CARNET </div></div>
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+        <div class='inline-button action-button-medium'>
+          <div class="image">
+            <ion-img src="../../../assets/icon/central/ICONO PROMOCIONES SEM.png"></ion-img>
+          </div>
+          <div class="text promos"> PROMOS </div>
+        </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 style="display: flex; justify-content: center;">
-        <div class='inline-button action-button-medium action-back' > <div class="image"><ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img></div><div class="text"> CARNET </div></div>
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+        <div class='inline-button action-button-medium'>
+          <div class="image">
+            <ion-img src="../../../assets/icon/central/ICONO RECURSOS AYTO.png"></ion-img>
+          </div>
+          <div class="text recursos_ayto"> RECURSOS AYTO. SEVILLA </div>
+        </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 pushSm=3 pushMd=2 style="display: flex; justify-content: center;">
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 pushSm=3 pushMd=2 class="central_section">
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 pullSm=3 pullMd=2 style="display: flex; justify-content: center;">
-        <div class='inline-button action-button-medium action-back' > <div class="image"><ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img></div><div class="text"> CARNET </div></div>
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 pullSm=3 pullMd=2 class="central_section">
+        <div class='inline-button action-button-medium'>
+          <div class="image">
+            <ion-img src="../../../assets/icon/central/ICONO ASISA AYTO SEVILLA.png"></ion-img>
+          </div>
+          <div class="text asisa"> ASISA AYTO. SEVILLA </div>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -1,8 +1,22 @@
-.logo-big {
-    display: block;
-    height: 450px;
-    max-height: 20vh;
-}
+/* 
+ *  Copyright 2021 Pixelada s. Coop. And. <info (at) pixelada (dot) org>
+ *  
+ *  This file is part of SEM
+ *  
+ *  SEM is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  SEM is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
+ */
+ 
 ion-header {
     background: white;
 }
@@ -13,6 +27,10 @@ ion-content {
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: contain;
+    .central_section {
+        display: flex; 
+        justify-content: center;
+    }
     .inline-button {
         display: inline-block;
     }
@@ -21,11 +39,48 @@ ion-content {
         justify-content: center;
         margin: auto;
         .text {
-            font-size: calc(8px + 2.5vw);
+            font-size: calc(9px + 0.5vw);
+            font-weight: 600;
+            background: white;
+            border-radius: 5px;
         }
         .image {
-            width: 80%;
+            width: 75%;
             margin: auto;
         }
+    }
+    /* text colors */
+    .carnet {
+        color: #34505E;
+    }
+    .notificaciones {
+        color: #00946F;
+    }
+    .aula_virtual {
+        color: #00439F;
+    }
+    .enlaces {
+        color: #BE1623;
+    }
+    .empleo {
+        color: #021948;
+    }
+    .formacion {
+        color: #FF761A;
+    }
+    .cita_previa {
+        color: #006133;
+    }
+    .seccs_sindicales {
+        color: #0C0F57;
+    }
+    .promos {
+        color: #D32F2F;
+    }
+    .recursos_ayto {
+        color: #E6B00F;
+    }
+    .asisa {
+        color: #00326F;
     }
 }
