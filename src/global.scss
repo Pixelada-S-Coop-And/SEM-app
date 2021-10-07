@@ -41,6 +41,10 @@
   text-decoration: underline solid var(--ion-color-primary-shade);
   text-underline-position: under;
 }
+.link-section-title {
+  color: #0C0F57;
+  font-size: calc(15px + 0.5vw);
+}
 
 .button {
     padding: 10px;
