@@ -36,8 +36,8 @@ export class NotificationBoxComponent implements OnInit {
   description: SafeHtml;
   url_invite_text: string = '<p> Puedes ver la noticia en el blog, mediante tu navegador web, haciendo click aquí </p>';
 
-  constructor( public sanitizer: DomSanitizer, public notificationsSvc: NotificationsService,
-                public iab: InAppBrowser) { 
+  constructor(public sanitizer: DomSanitizer, public notificationsSvc: NotificationsService,
+              public iab: InAppBrowser) { 
     this.expanded = false;
   }
 

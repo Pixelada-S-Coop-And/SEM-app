@@ -22,6 +22,7 @@ import { Router } from '@angular/router';
 import { SessionService } from '../../services/session.service';
 import { ToastController } from '@ionic/angular';
 import { GlobalService } from '../../services/global.service';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-main',
@@ -31,7 +32,8 @@ import { GlobalService } from '../../services/global.service';
 export class MainPage {
 
   constructor(private router: Router, private sessionSvc: SessionService,
-              private toastCtrl: ToastController, private global: GlobalService) { }
+              private toastCtrl: ToastController, private global: GlobalService,
+              public iab: InAppBrowser) { }
 
   ionViewWillEnter() {
     console.log('main will enter');
@@ -81,5 +83,35 @@ export class MainPage {
   goToCitaPrevia() {
     console.log('going to autonomia-form');
     this.router.navigateByUrl('/autonomia-form');
+  }
+  goToEnlaces() {
+    console.log('going to enlaces');
+    this.router.navigateByUrl('/enlaces');
+  }
+  goToEmpleo() {
+    console.log('going to enlaces');
+    this.router.navigateByUrl('/empleo');
+  }
+  goToFormacion() {
+    console.log('going to enlaces');
+    this.router.navigateByUrl('/formacion');
+  }
+  goToSeccsSind() {
+    console.log('going to enlaces');
+    this.router.navigateByUrl('/formacion');
+  }
+  goToRecursos() {
+    console.log('going to enlaces');
+    this.router.navigateByUrl('/formacion');
+  }
+  openUrl(url) {
+    let regExp = new RegExp('(http|https)://');
+    if(!regExp.test(url)) {
+      url = 'http://' + url;
+    }
+    console.log('trying to open: ' + url);
+    this.presentToast('abriendo el enlace: ' + url + " en tu navegador web, fuera de esta aplicación.");
+    const ref = this.iab.create(url, '_system', 'location=yes');
+    ref.close();
   }
 }

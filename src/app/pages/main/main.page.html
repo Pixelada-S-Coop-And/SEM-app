@@ -33,28 +33,28 @@
   <ion-grid ion-justify-content-center>
     <ion-row ion-justify-content-center>
       <ion-col size=1.5>
-        <ion-img src="../../../assets/icon/sup/ICONO WEB SEMapp.png"></ion-img>
+        <ion-img src="../../../assets/icon/sup/ICONO WEB SEMapp.png" (click)="openUrl('https://sem-aytodesevilla.es/')"></ion-img>
       </ion-col>
       <ion-col size=1.5>
-        <ion-img src="../../../assets/icon/sup/ICONO TELEFONO SEMapp.png"></ion-img>
+        <ion-img src="../../../assets/icon/sup/ICONO TELEFONO SEMapp.png" href="tel://955472026"></ion-img>
       </ion-col>
       <ion-col size=1.5>
-        <ion-img src="../../../assets/icon/sup/ICONO MAIL SEMapp.png"></ion-img>
+        <ion-img src="../../../assets/icon/sup/ICONO MAIL SEMapp.png" href="mailto://sem.afiliados@gmail.com"></ion-img>
       </ion-col>
       <ion-col size=1.5>
-        <ion-img src="../../../assets/icon/sup/ICONO WHATSAPP SEMapp.png"></ion-img>
+        <ion-img src="../../../assets/icon/sup/ICONO WHATSAPP SEMapp.png" href="whatsapp://send?phone=34655207237"></ion-img>
       </ion-col>
       <ion-col size=1.5>
-        <ion-img src="../../../assets/icon/sup/ICONO FACEBOOK SEMapp.png"></ion-img>
+        <ion-img src="../../../assets/icon/sup/ICONO FACEBOOK SEMapp.png" (click)="openUrl('https://www.facebook.com/sem.ayuntamientosevilla')"></ion-img>
       </ion-col>
       <ion-col size=1.5>
-        <ion-img src="../../../assets/icon/sup/ICONO TWITTER SEMapp.png"></ion-img>
+        <ion-img src="../../../assets/icon/sup/ICONO TWITTER SEMapp.png" (click)="openUrl('https://twitter.com/semaytodsevilla')"></ion-img>
       </ion-col>
       <ion-col size=1.5>
-        <ion-img src="../../../assets/icon/sup/ICONO INSTAGRAM SEMapp.png"></ion-img>
+        <ion-img src="../../../assets/icon/sup/ICONO INSTAGRAM SEMapp.png" (click)="openUrl('https://www.instagram.com/semayto.sevilla/')"></ion-img>
       </ion-col>
       <ion-col size=1.5>
-        <ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png"></ion-img>
+        <ion-img src="../../../assets/icon/sup/ICONO POSICION MAPA SEMapp.png" (click)="openUrl('https://www.google.com/maps/place/C.+Otto+Engelhardt,+1,+41004+Sevilla/@37.381985,-5.98613,17z/data=!4m5!3m4!1s0xd126c1f7440d67f:0xa6a1a2c4839958bd!8m2!3d37.3819848!4d-5.9861301?hl=es-ES')"></ion-img>
       </ion-col>
     </ion-row>
     <ion-row class="ion-align-items-start">
@@ -74,7 +74,7 @@
           <div class="text notificaciones"> NOTIFICACIONES </div>
         </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section" (click)="openUrl('https://www.andaluza.org/sem/login/index.php')">
         <div class='inline-button action-button-medium'>
           <div class="image">
             <ion-img src="../../../assets/icon/central/ICONO AULA VIRTUAL.png"></ion-img>
@@ -82,7 +82,7 @@
           <div class="text aula_virtual"> AULA VIRTUAL </div>
         </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section" (click)="goToEnlaces()">
         <div class='inline-button action-button-medium'>
           <div class="image">
             <ion-img src="../../../assets/icon/central/ICONO ENLACES.png"></ion-img>
@@ -90,7 +90,7 @@
           <div class="text enlaces"> ENLACES </div>
         </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section" (click)="goToEmpleo()">
         <div class='inline-button action-button-medium'>
           <div class="image">
             <ion-img src="../../../assets/icon/central/ICONO EMPLEO AYTO SEVILLA.png"></ion-img>
@@ -98,7 +98,7 @@
           <div class="text empleo"> EMPLEO </div>
         </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section" (click)="goToFormacion()">
         <div class='inline-button action-button-medium'>
           <div class="image">
             <ion-img src="../../../assets/icon/central/ICONO FORMACIÓN.png"></ion-img>
@@ -113,7 +113,7 @@
           </div>
           <div class="text cita_previa"> CITA PREVIA </div></div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section" (click)="goToSeccsSind()">
         <div class='inline-button action-button-medium'>
           <div class="image">
             <ion-img src="../../../assets/icon/central/ICONO SECC. SINDICALES SEM.png"></ion-img>
@@ -122,14 +122,14 @@
         </div>
       </ion-col>
       <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
-        <div class='inline-button action-button-medium'>
+        <div class='inline-button action-button-medium' (click)="openUrl('https://sem-aytodesevilla.es/promociones/')">
           <div class="image">
             <ion-img src="../../../assets/icon/central/ICONO PROMOCIONES SEM.png"></ion-img>
           </div>
           <div class="text promos"> PROMOS </div>
         </div>
       </ion-col>
-      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section">
+      <ion-col sizeXs=4 sizeSm=3 sizeMd=2 class="central_section" (click)="goToRecursos()">
         <div class='inline-button action-button-medium'>
           <div class="image">
             <ion-img src="../../../assets/icon/central/ICONO RECURSOS AYTO.png"></ion-img>
@@ -140,7 +140,7 @@
       <ion-col sizeXs=4 sizeSm=3 sizeMd=2 pushSm=3 pushMd=2 class="central_section">
       </ion-col>
       <ion-col sizeXs=4 sizeSm=3 sizeMd=2 pullSm=3 pullMd=2 class="central_section">
-        <div class='inline-button action-button-medium'>
+        <div class='inline-button action-button-medium' (click)="openUrl('https://sem-aytodesevilla.es/asisa-ayto-sevilla/')">
           <div class="image">
             <ion-img src="../../../assets/icon/central/ICONO ASISA AYTO SEVILLA.png"></ion-img>
           </div>
