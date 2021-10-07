@@ -108,9 +108,9 @@ export class MainPage {
     console.log('going to cursos');
     this.router.navigateByUrl('/cursos');
   }
-  openUrl(url) {
+  openUrl(url, check = true) {
     let regExp = new RegExp('(http|https)://');
-    if(!regExp.test(url)) {
+    if(!regExp.test(url) && check) {
       url = 'http://' + url;
     }
     console.log('trying to open: ' + url);
