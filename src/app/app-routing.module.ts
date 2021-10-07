@@ -65,6 +65,10 @@ const routes: Routes = [
   {
     path: 'secciones',
     loadChildren: () => import('./pages/secciones/secciones.module').then( m => m.SeccionesPageModule)
+  },
+  {
+    path: 'recursos',
+    loadChildren: () => import('./pages/recursos/recursos.module').then( m => m.RecursosPageModule)
   }
 ];
 @NgModule({
