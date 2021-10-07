@@ -89,20 +89,24 @@ export class MainPage {
     this.router.navigateByUrl('/enlaces');
   }
   goToEmpleo() {
-    console.log('going to enlaces');
+    console.log('going to empleo');
     this.router.navigateByUrl('/empleo');
   }
   goToFormacion() {
-    console.log('going to enlaces');
+    console.log('going to formacion');
     this.router.navigateByUrl('/formacion');
   }
   goToSeccsSind() {
-    console.log('going to enlaces');
-    this.router.navigateByUrl('/formacion');
+    console.log('going to secciones');
+    this.router.navigateByUrl('/secciones');
   }
   goToRecursos() {
-    console.log('going to enlaces');
-    this.router.navigateByUrl('/formacion');
+    console.log('going to recursos');
+    this.router.navigateByUrl('/recursos');
+  }
+  goToCursos() {
+    console.log('going to cursos');
+    this.router.navigateByUrl('/cursos');
   }
   openUrl(url) {
     let regExp = new RegExp('(http|https)://');
