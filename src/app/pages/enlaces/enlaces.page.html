@@ -1,0 +1,62 @@
+<!--
+  Copyright 2021 Pixelada s. Coop. And. <info (at) pixelada (dot) org>
+  
+  This file is part of SEM
+  
+  SEM is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  SEM is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
+ -->
+
+ <ion-header>
+  <ion-grid style="background: white; border-bottom: thin solid grey;">
+    <ion-row class="ion-align-items-center">
+      <ion-col sizeXs=2 size=1>
+        <ion-img src="../../../assets/icon/central/ICONO ENLACES.png"></ion-img>
+      </ion-col>
+      <ion-col sizeXs=7 size=8 >
+        <p class="title">
+          Enlaces
+        </p>
+      </ion-col>
+      <ion-col size=3 style="text-align: center;">
+        <ion-icon class="header-back" name="chevron-back-outline" (click)="back()"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid style="background: white;">
+    <ion-row>
+      <ion-col sizeXs=12 sizeSm=6 SizeMd=4>
+        <p class="link-title" (click)="openUrl('https://www.sevilla.org/portalempleado/')"><ion-icon name="link-outline"></ion-icon>&nbsp;Portal plantilla</p>
+      </ion-col>
+      <ion-col sizeXs=12 sizeSm=6 SizeMd=4>
+        <p class="link-title" (click)="openUrl('https://sede.sevilla.org/opencms/system/modules/sede/index#')"><ion-icon name="link-outline"></ion-icon>&nbsp;Sede electrónica</p>
+      </ion-col>
+      <ion-col sizeXs=12 sizeSm=6 SizeMd=4>
+        <p class="link-title" (click)="openUrl('https://sede.sevilla.org/opencms/system/modules/sede/contents/banners/tablon')"><ion-icon name="link-outline"></ion-icon>&nbsp;Tablón de edictos</p>
+      </ion-col>
+      <ion-col sizeXs=12 sizeSm=6 SizeMd=4>
+        <p class="link-title" (click)="openUrl('https://www.dipusevilla.es/bop/')"><ion-icon name="link-outline"></ion-icon>&nbsp;BOP</p>
+      </ion-col>
+      <ion-col sizeXs=12 sizeSm=6 SizeMd=4>
+        <p class="link-title" (click)="openUrl('https://www.juntadeandalucia.es/boja/')"><ion-icon name="link-outline"></ion-icon>&nbsp;BOJA</p>
+      </ion-col>
+      <ion-col sizeXs=12 sizeSm=6 SizeMd=4>
+        <p class="link-title" (click)="openUrl('https://boe.es/')"><ion-icon name="link-outline"></ion-icon>&nbsp;BOE</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

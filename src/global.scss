@@ -35,6 +35,12 @@
     color: #0C0F57;
     font-size: calc(16px + 0.5vw);
 }
+.link-title {
+  color: var(--ion-color-primary);
+  font-size: calc(14px + 0.5vw);
+  text-decoration: underline solid var(--ion-color-primary);
+  text-underline-position: under;
+}
 
 .button {
     padding: 10px;
