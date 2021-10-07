@@ -1,0 +1,62 @@
+<!--
+  Copyright 2021 Pixelada s. Coop. And. <info (at) pixelada (dot) org>
+  
+  This file is part of SEM
+  
+  SEM is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  SEM is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
+ -->
+
+ <ion-header>
+  <ion-grid style="background: white; border-bottom: thin solid grey;">
+    <ion-row class="ion-align-items-center">
+      <ion-col sizeXs=2 size=1>
+        <ion-img src="../../../assets/icon/central/ICONO SECC. SINDICALES SEM.png"></ion-img>
+      </ion-col>
+      <ion-col sizeXs=7 size=8 >
+        <p class="title">
+          Secciones sindicales
+        </p>
+      </ion-col>
+      <ion-col size=3 style="text-align: center;">
+        <ion-icon class="header-back" name="chevron-back-outline" (click)="back()"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid style="background: white;">
+    <ion-row>
+      <ion-col sizeXs=12 sizeSm=6 SizeMd=4>
+        <p class="link-section-title" (click)="openUrl('https://semaytoalcalaguadaira.es/')"><ion-icon name="link-outline"></ion-icon>&nbsp;Ayuntamiento de Alacalá de Guadaíra</p>
+      </ion-col>
+      <ion-col sizeXs=12 sizeSm=6 SizeMd=4>
+        <p class="link-section-title">Ayto. de Dos Hermanas</p>
+        <p class="link-title" (click)="openUrl('https://sem-aytodesevilla.es/ayuntamiento-dos-hermanas/')"><ion-icon name="link-outline"></ion-icon>&nbsp;Portada</p>
+        <p class="link-title" (click)="openUrl('https://sem-aytodesevilla.es/documentos-interes-ayto-dos-hermanas/')"><ion-icon name="link-outline"></ion-icon>&nbsp;Documentos de interés</p>
+      </ion-col>
+      <ion-col sizeXs=12 sizeSm=6 SizeMd=4>
+        <p class="link-section-title">IMD Ayto. de Sevilla</p>
+        <p class="link-title" (click)="openUrl('https://sem-aytodesevilla.es/imd/')"><ion-icon name="link-outline"></ion-icon>&nbsp;Portada</p>
+        <p class="link-title" (click)="openUrl('https://sem-aytodesevilla.es/documentos-interes-imd/')"><ion-icon name="link-outline"></ion-icon>&nbsp;Documentos de interés</p>
+      </ion-col>
+      <ion-col sizeXs=12 sizeSm=6 SizeMd=4>
+        <p class="link-section-title">LIPASAM Ayto. de Sevilla</p>
+        <p class="link-title" (click)="openUrl('https://sem-aytodesevilla.es/lipasam/')"><ion-icon name="link-outline"></ion-icon>&nbsp;Portada</p>
+        <p class="link-title" (click)="openUrl('https://sem-aytodesevilla.es/documentos-interes-lipasam/')"><ion-icon name="link-outline"></ion-icon>&nbsp;Documentos de interés</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
