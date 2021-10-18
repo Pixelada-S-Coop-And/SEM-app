@@ -18,11 +18,11 @@
  -->
 <div>
   <ion-grid>
-    <ion-row>
-      <ion-col sizeMd="10" size="8" (click)="expand()">
+    <ion-row id="first-row">
+      <ion-col sizeMd="10" size="8" (click)="expand()" ion-align-items-baseline>
         <span class="notification-text notification-title" [ngClass]="{'notification-text-disabled' : myNotification.active === 0}"> {{ myNotification.subject }} </span><br/>
         <span class="notification-text" [ngClass]="{'notification-text-hided' : myNotification.active === 0}">
-          <ion-datetime [(ngModel)]="myNotification.time" displayFormat="hh:mm DD/MM/YY" readonly="true">
+          <ion-datetime [(ngModel)]="dateTime" displayFormat="hh:mm DD/MM/YY" readonly="true">
           </ion-datetime>
         </span>
       </ion-col>

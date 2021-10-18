@@ -35,13 +35,18 @@ export class NotificationBoxComponent implements OnInit {
   expanded: boolean;
   description: SafeHtml;
   url_invite_text: string = '<p> Puedes ver la noticia en el blog, mediante tu navegador web, haciendo click aquí </p>';
+  dateTime: string;
 
   constructor(public sanitizer: DomSanitizer, public notificationsSvc: NotificationsService,
               public iab: InAppBrowser) { 
     this.expanded = false;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const myDate = new Date(parseInt(this.myNotification.time)*1000);
+    console.log(parseInt(this.myNotification.time) + " , unixtime is date time:" + myDate);
+    this.dateTime = myDate.toISOString();
+  }
 
   ngAfterContentInit() {
     this.description = this.sanitizer.bypassSecurityTrustHtml(this.myNotification.content);

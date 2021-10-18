@@ -16,6 +16,12 @@
  *  You should have received a copy of the GNU General Public License
  *  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
  */
+ion-grid {
+    #first-row {
+        align-items: center;
+    }
+}
+
 
  .notification-title {
     font-weight: bold;
@@ -52,9 +58,6 @@
     // top: 0;
 }
 
-app-notification {
-    padding: 16px 40px 17px 0;
-}
 ion-datetime {
     --padding-start: 0;
 }
