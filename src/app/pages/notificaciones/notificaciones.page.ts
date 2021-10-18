@@ -58,6 +58,7 @@ export class NotificacionesPage {
       (val) => {
         this.myNotifications = val;
         this.notificationsLoaded = true;
+        this.sortNotifications();
       },
       (err) => {
         console.log('error, returned notifications:' + err);
@@ -83,6 +84,7 @@ export class NotificacionesPage {
                 this.notificationsSvc.notificationsList().then(
                   (val) => {
                     this.myNotifications = val;
+                    this.sortNotifications();
                     for (const notification of this.myNotifications) {
                       console.log('current notificacions:' + notification.id);
                     }
@@ -110,4 +112,28 @@ export class NotificacionesPage {
     console.log('back to main page');
     this.router.navigateByUrl('main');
   }
+  async doRefresh(event) {
+    this.notificationsSvc.getNotifications().then(
+      (val) => {
+        this.myNotifications = val;
+        this.sortNotifications();
+        event.target.complete();
+      },
+      (err) => {
+        this.presentToast('Hubo un error actualizando las notificaciones, ¿tienes conexión? Inténtalo más tarde');
+        event.target.complete();
+    });
+  }
+  sortNotifications() {
+    this.myNotifications.sort((not1, not2) => {
+      if(parseInt(not1.time) < parseInt(not2.time)) {
+        return 1;
+      }
+      if (parseInt(not1.time) > parseInt(not2.time)) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+
 }

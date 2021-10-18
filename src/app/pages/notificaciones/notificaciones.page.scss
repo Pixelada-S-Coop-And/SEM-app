@@ -25,6 +25,9 @@
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: contain;
+    ion-refresher {
+        color: black;
+    }
     ion-grid {
         margin: 0 16px 36px;
         background: #fff;
@@ -37,7 +40,6 @@
             cursor: pointer;
             border-bottom: solid thin #ddd;
             display: block;
-            padding: 16px 40px 17px 0;
             display: block;
             font-size: 15px !important;
             line-height: 22px;

@@ -36,6 +36,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="page-content">
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content  pullingText="Tira para actualizar" refreshingText="Actualizando...">      
+    </ion-refresher-content>
+  </ion-refresher>
   <div *ngIf="myNotifications"> 
       <ion-grid *ngIf="myNotifications.length > 0">
           <app-notification-box *ngFor="let notification of this.myNotifications" [myNotification] = "notification" (removeNotification)="onRemoveNotification(notification)"></app-notification-box>
