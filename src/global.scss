@@ -83,3 +83,12 @@
     color: white;
     padding: calc( 5px + 1vw);
 }
+.header-section-logo {
+  max-width: calc(60px + 2.5vw);
+  display: inline-block;
+  vertical-align: middle;
+}
+.header-section-title {
+  display: inline;
+  padding-left: 10px;
+}
