@@ -16,9 +16,25 @@
  *  You should have received a copy of the GNU General Public License
  *  along with SEM.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
+.header-logo {
+    text-align: center;
+}
+.header-title {
+    text-align: center;
+}
+@media only screen and (min-width: 576px) {
+    .header-logo {
+        text-align: right;
+    }
+    .header-title {
+        text-align: left;
+    }   
+}
+
 ion-header {
     background: white;
+
 }
 ion-content {
     background-color: white; 
