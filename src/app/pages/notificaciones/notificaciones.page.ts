@@ -36,10 +36,10 @@ export class NotificacionesPage {
   constructor(private sessionSvc: SessionService, private toastCtrl: ToastController,
               private router: Router, public notificationsSvc: NotificationsService,
               private alertCtrl: AlertController) {
-    this.notificationsLoaded = false;
   }
   ionViewWillEnter() {
     console.log('tab1 will enter');
+    this.notificationsLoaded = false;
     // we check if logged and we are an active user
     this.sessionSvc.userData().then(
       (data) => {
