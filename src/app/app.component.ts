@@ -18,6 +18,11 @@
  */
 
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
+import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
+import { Platform } from '@ionic/angular';
+import { NotificationsService } from './services/notifications.service';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +30,62 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {
-    
+  constructor(private platform: Platform, private background: BackgroundMode,
+    private localNotifications: LocalNotifications, private router: Router,
+    private ntfsSvc: NotificationsService) {
+    this.platform.ready().then(() => {
+      this.background.on('enable').subscribe(() => {
+        setInterval (() => {
+          this.checkNotifications();
+        }, 10000);
+        console.log('activated');
+      });
+      this.localNotifications.on('click').subscribe(
+        res => {
+          this.router.navigateByUrl('/notificaciones');
+      });
+      this.background.overrideBackButton();
+      this.background.enable();
+    });
+  }
+
+  checkNotifications() {
+    this.ntfsSvc.getLastNotifications().then(
+      (data: any) => {
+        // console.log('number of notifications getted:', data.length);
+        // console.log('notifications getted:', data.length);
+        if (data.length > 0) {
+          let notified: boolean;
+          this.ntfsSvc.isNotified().then(
+            (isIt: boolean) => {
+              console.log('Have we notified?', isIt);
+              notified = isIt;
+              if (notified === false) {
+                this.notify();
+              }
+            },
+            (err) => { // it doesn't exists, create!
+              console.log('ERROR getting notified');
+              this.notify();
+          });
+        }
+      },
+      (err) => {
+        console.log('not getting notifications:', err);
+    });
+  }
+  /*! function to notify */
+  notify() {
+    // we have to notificate the user
+    console.log('sending a local notification!');
+    this.localNotifications.schedule({
+      id: 1,
+      title: 'Notificación SEM',
+      text: '¡Tienes notificaciones nuevas en semApp!',
+      led: 'FF0000',
+      icon: 'res://ic_launcher'
+      // smallIcon: 'res://icon_notification' // TODO: not working!
+    });
+    this.ntfsSvc.notified(true);
   }
 }

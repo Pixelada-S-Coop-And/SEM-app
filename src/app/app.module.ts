@@ -34,6 +34,8 @@ import { GlobalService } from './services/global.service';
 import { HttpClientModule } from '@angular/common/http';
 import * as cordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
+import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    InAppBrowser
+    InAppBrowser,
+    LocalNotifications,
+    BackgroundMode
   ],
   bootstrap: [AppComponent],
 })

@@ -26,6 +26,9 @@ import { GlobalService } from './global.service';
   providedIn: 'root'
 })
 export class NotificationsService {
+  STORAGE_KEY_LISTS = 'notifications_list';
+  STORAGE_KEY_TIME = 'notifications_last_time';
+  STORAGE_KEY_NOTIFIED = 'notifications_notified';
   constructor(private myApi: PixapiService, private myStorage: Storage,
               private global: GlobalService) { }
 
@@ -146,13 +149,12 @@ export class NotificationsService {
     });
   }
   /*! Notified function to set flag */
-  /*
+
   notified(notified: boolean) {
     this.myStorage.set(this.STORAGE_KEY_NOTIFIED, notified);
   }
-  */
+
   /*! Is user notified? */
-  /*
   isNotified(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.myStorage.get(this.STORAGE_KEY_NOTIFIED).then(
@@ -164,7 +166,6 @@ export class NotificationsService {
       });
     });
   }
-  */
   private saveReturnNotificationsTime(data: any) {
     return new Promise((resolve, reject) => {
       if (data != null) {
