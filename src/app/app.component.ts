@@ -52,15 +52,14 @@ export class AppComponent {
   checkNotifications() {
     this.ntfsSvc.getLastNotifications().then(
       (data: any) => {
-        // console.log('number of notifications getted:', data.length);
-        // console.log('notifications getted:', data.length);
+        console.log('number of notifications got:', data.length);
         if (data.length > 0) {
           let notified: boolean;
           this.ntfsSvc.isNotified().then(
             (isIt: boolean) => {
               console.log('Have we notified?', isIt);
               notified = isIt;
-              if (notified === false) {
+              if (!notified) {
                 this.notify();
               }
             },

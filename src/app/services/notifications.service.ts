@@ -64,7 +64,10 @@ export class NotificationsService {
           this.myStorage.get(this.global.last_time_notified_key).then(
             (lastTime) => {
               this.myApi.notificationsList(lastTime, id).then(
-                (data) => {
+                (data: any) => {
+                  if (data.messages) {
+                    this.notified(false);
+                  }
                   this.saveReturnNotificationsTime(data).then(
                     (notifications) => {
                       resolve(notifications as INotification[]);
