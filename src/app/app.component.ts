@@ -34,7 +34,7 @@ export class AppComponent {
     private localNotifications: LocalNotifications, private router: Router,
     private ntfsSvc: NotificationsService) {
     this.platform.ready().then(() => {
-      this.background.setDefaults({ title: 'Aplicación SEM', text: 'Notificaciones del sindicato trabajando en segundo plano', resume: true, hidden: true, silent: true});
+      this.background.setDefaults({ title: 'Aplicación SEM', text: 'Notificaciones del sindicato trabajando en segundo plano', resume: true, hidden: true, silent: false});
       this.background.on('enable').subscribe(() => {
         setInterval (() => {
           this.checkNotifications();
